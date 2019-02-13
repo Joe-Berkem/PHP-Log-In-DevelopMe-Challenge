@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Your Secret Site </title>
+	<title>Register For A Secret Site</title>
 </head>
 <body>
 
