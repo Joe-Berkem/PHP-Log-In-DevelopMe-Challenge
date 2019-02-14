@@ -1,51 +1,69 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Secret Site Log In</title>
-</head>
-<body>
-
 <?php 
+session_start();
+ 
+if (!isset($_SESSION['count']))
+{
+  $_SESSION['count'] = 1;
+  echo $_SESSION['count'];
+
+}
+else
+{
+  ++$_SESSION['count'];
+}
+ 
+
+
+
+include('db_server.php');
+
+// initialize session variables
+// $_SESSION['logged_in_user_id'] = '1';
+
+// // access session variables
+// echo $_SESSION['logged_in_user_id'];
 
 $knownemail = "root@root.com";
 $knownpassword = "root";
 $loggedin = false;
 
-function printloginerror(){
-	echo "<p>Whoops, it doesn't look like you have an account with SS. Please register</p>";
-}
-
-function printloggedin(){
-	echo "<p>Logged in to your secret site</p>";
-}
-
-?>
-
-	<h1>Secret Site Log In</h1>
-
-<?php 
-
 if (!empty($_POST)) {
 
 	if (($_POST['email'] === $knownemail) && ($_POST['password'] === $knownpassword)) {
 		$loggedin = true; 
-		printloggedin();
+		header("location:account.php");
 		die();
 	} else {
-		printloginerror();
+		header("location:noaccount.php");
 	}
 }
 
 ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Log In</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+
+	<header>
+		<button class="signupbutton">Sign Up</button>
+		<button class="loginbutton1">Log In</button>
+	</header>
+
 	<form action="login.php" method="post">
 
-		<label id="email">Email</label>
-		<input type="email" name="email">
+		<label id="email">Email*</label>
+		<input type="email" name="email" placeholder="Email Address">
 
-		<label id="password">password</label>
-		<input type="text" name="password">
+		<label id="password">Password*</label>
+		<input type="text" name="password" placeholder="Enter Password">
 
-		<input type="submit" name="action" value="Log In">
+		<p><a href="forgot.php">Forgot Password</a></p>
+
+		<input class="bigbutton" type="submit" name="action" value="Log In">
 		
 	</form>
 

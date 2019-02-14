@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Your Secret Site </title>
+	<title>Your Secret Site</title>
 </head>
 <body>
 
