@@ -1,4 +1,7 @@
 <?php 
+// when the user arrives on the logout page their session details are resset and are logged out!
+session_start();
+session_unset();
 session_destroy();
 ?>
 
@@ -14,11 +17,7 @@ session_destroy();
 
 	<p>You've been successfully logged out</p>
 
-	<form action="login.php" method="post">
-
-		<input class="bigbutton" type="submit" name="action" value="HOME">
+	<a href="login.php"><button class="bigbutton" type="submit" name="action" value="HOME">HOME</button></a>
 		
-	</form>
-
 </body>
 </html>

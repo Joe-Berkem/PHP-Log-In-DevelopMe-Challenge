@@ -1,43 +1,48 @@
 <?php 
 session_start();
- 
-if (!isset($_SESSION['count']))
-{
-  $_SESSION['count'] = 1;
-  echo $_SESSION['count'];
-
-}
-else
-{
-  ++$_SESSION['count'];
-}
- 
-
-
-
 include('db_server.php');
 
-// initialize session variables
-// $_SESSION['logged_in_user_id'] = '1';
+// if the user is already logged in
+if (isset($_SESSION['logged-in']) && $_SESSION['logged-in']) {
+	$loggedin = true; 
+ 	include 'account.php';
+ 	die();
+} 
 
-// // access session variables
-// echo $_SESSION['logged_in_user_id'];
-
-$knownemail = "root@root.com";
-$knownpassword = "root";
-$loggedin = false;
-
+// if the login form is submitted
 if (!empty($_POST)) {
 
-	if (($_POST['email'] === $knownemail) && ($_POST['password'] === $knownpassword)) {
-		$loggedin = true; 
-		header("location:account.php");
-		die();
+//the submitted login details are assigned to variables 
+	$password = isset($_POST['password']) ? $_POST['password'] : null;
+	$email = isset($_POST['email']) ? $_POST['email'] : null;
+
+// the email address is checked against the database
+	$emailquery = "SELECT * FROM `users` WHERE `email` = '$email';";
+	
+	$rowresult = mysqli_query($db_connection, $emailquery);
+
+	if (mysqli_num_rows($rowresult) > 0){
+		while($row = mysqli_fetch_assoc($rowresult)){
+
+// the login details in the selected row are checked against those submitted	
+//if the login form is submitted with details that match our data they are directed to the account page and logged in!
+			if (($row['email'] === $email) && ($row['password'] === $password)) {
+			$loggedin = true; 
+			$_SESSION['logged-in'] = true;
+			header("location:account.php");
+			}
+//if they enter the login form some incorrect details they are shown the noaccount or error message
+			else {
+				include 'noaccount.php';
+			}		
+		} 
+//if they enter no correct details they are shown the noaccount or error message
 	} else {
-		header("location:noaccount.php");
-	}
+		include 'noaccount.php';
+		}
 }
 
+// if they have arrived on the page, are not logged in and haven't submitted the form this is what they will see
 ?>
 
 <!DOCTYPE html>
@@ -49,8 +54,8 @@ if (!empty($_POST)) {
 <body>
 
 	<header>
-		<button class="signupbutton">Sign Up</button>
-		<button class="loginbutton1">Log In</button>
+		<a href="register.php"><button class="signupbutton">Sign Up</button></a>
+		<button type="submit" name="action" value="Log In" class="loginbutton1">Log In</button>
 	</header>
 
 	<form action="login.php" method="post">

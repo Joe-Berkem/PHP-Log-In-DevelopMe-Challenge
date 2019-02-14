@@ -1,10 +1,7 @@
 <?php 
-session_start();
 include('db_server.php');
 
-$_SESSION['firstname'] = $_POST['firstname'];
-$_SESSION['lastname'] = $_POST['lastname'];
-$_SESSION['email'] = $_POST['email'];
+// $query = "INSERT INTO users (email, password) VALUES ('$clean_email', '$clean_password');";
 
 
 ?>

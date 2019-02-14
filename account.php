@@ -1,16 +1,5 @@
 <?php 
-session_start();
- 
-if (!isset($_SESSION['count']))
-{
-  $_SESSION['count'] = 1;
-  echo $_SESSION['count'];
 
-}
-else
-{
-  ++$_SESSION['count'];
-}
 ?>
 
 
@@ -28,11 +17,9 @@ else
 
 	<p>Email Address</p>
 
-	<form action="login.php" method="post">
-
-		<input class="bigbutton" type="submit" name="action" value="Log Out">
+	<a href="logout.php"><button class="bigbutton" type="submit" name="action" value="Log Out">Log Out</button></a>
 		
-	</form>
+	
 
 </body>
 </html>

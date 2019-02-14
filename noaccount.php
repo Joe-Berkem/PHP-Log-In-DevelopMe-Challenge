@@ -8,13 +8,7 @@
 
 	<h1>Whoops</h1>
 
-	<p>It doesn't look like you have an account. Please register</p>
-
-	<form action="login.php" method="post">
-
-		<input class="bigbutton" type="submit" name="action" value="REGISTER">
-		
-	</form>
+	<p>Either you don't have an account with us or you entered the wrong details. Try logging in again below or click <strong>sign up</strong> to create an account.</p>
 
 </body>
 </html>
