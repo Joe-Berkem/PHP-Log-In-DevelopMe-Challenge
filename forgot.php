@@ -13,7 +13,7 @@
 		<label id="email">Email*</label>
 		<input type="email" name="email" placeholder="Email Address">
 
-		<input class="bigbutton" type="submit" name="action" value="RESET">
+		<button class="bigbutton" type="submit" name="action">RESET</button>
 		
 	</form>
 

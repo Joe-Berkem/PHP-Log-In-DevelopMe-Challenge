@@ -11,6 +11,30 @@ if (!empty($_POST)) {
 
 //log input to the database
 	$result = registerNewUser ($email, $password, $firstname, $lastname);
+
+//send verification email to user
+	if($result) {
+      $to = "$email";
+      $subject = "Verify your registration";
+      $message = "Thanks for signing up!
+
+Your account has been created, you can login with the following credentials after you have activated your account by clicking the link below.
+
+------------------------
+Email: '.$email.'
+Password: '.$password.'
+------------------------
+ 
+Please click this link to activate your account..
+http://www.testwebsite.com/verify.php?email=$email";
+
+      $from = "testemail@example.com";
+      $headers = "From: $from";
+      mail($to,$subject,$message,$headers);
+    }
+
+//send user to the success page
+	header("location:success.php");
 }
 
 ?>

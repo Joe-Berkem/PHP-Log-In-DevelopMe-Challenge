@@ -66,7 +66,10 @@ if (!empty($_POST)) {
 		<label id="password">Password*</label>
 		<input type="text" name="password" placeholder="Enter Password">
 
-		<p><a href="forgot.php">Forgot Password</a></p>
+		<!-- <input class="rememberinput" type="checkbox" name="remember" id="remember" value="1">
+		<label class="rememberlabel" for="remember">Remember Me</label> -->
+
+		<p class="forgot-password"><a href="forgot.php">Forgot Password</a></p>
 
 		<input class="bigbutton" type="submit" name="action" value="Log In">
 		

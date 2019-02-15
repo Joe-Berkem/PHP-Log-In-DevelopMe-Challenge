@@ -10,11 +10,7 @@
 
 	<p>Please check your email for a confirmation link to complete your password reset</p>
 
-	<form action="login.php" method="post">
-
-		<input class="bigbutton" type="submit" name="action" value="HOME">
-		
-	</form>
+	<a href="login.php"><button class="bigbutton" type="submit" name="action" value="HOME">HOME</button></a>
 
 </body>
 </html>
